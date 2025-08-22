@@ -7,14 +7,29 @@ const props = defineProps({
     userId: String
 });
 
-let courseData = ref(undefined);
+interface TeeOption {
+    tee_name: string;
+    course_rating: number;
+    slope_rating: number;
+    total_yards: number;
+}
+
+interface CourseData {
+    course_name: string;
+    tees: {
+        male: Record<string, TeeOption>;
+        female: Record<string, TeeOption>;
+    };
+}
+
+let courseData = ref<CourseData | undefined>(undefined);
 const showCourseFinder = ref(true);
 const showEnterCourseData = ref(false);
 const genderTeeOptions = ['Male', 'Female'];
 const selectedTeeGender = ref('');
 const selectedTeePlayed = ref(undefined);
-const maleTeeOptions = ref([]);
-const femaleTeeOptions = ref([]);
+const maleTeeOptions = ref<TeeOption[]>([]);
+const femaleTeeOptions = ref<TeeOption[]>([]);
 const showCourseData = ref(false);
 const selectedTeeData = ref();
 

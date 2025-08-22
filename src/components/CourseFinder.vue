@@ -37,7 +37,8 @@
   }
 
   const selectCourse = function (courseId: number) {
-    selectedCourse.value = courseList.value.find(course => course.id === courseId);
+    selectedCourse.value = courseList.value.find((course: any) => course.id === courseId);
+    
     emit('selectedCourseData', {
       selectedCourse
     });
