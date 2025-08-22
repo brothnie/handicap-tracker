@@ -77,7 +77,7 @@ app.post('/handicapApi/CreateUser', (req, res)=>{
 // TestDatabase name: test-database.db
 // Production Database name: handicap-tracker.db
 
-const db = new sqlite3.Database('./handicap-tracker.db', (err) => {
+const db = new sqlite3.Database('./test-database.db', (err) => {
     if (err) {
         console.error(err.message);
     }
