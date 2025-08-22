@@ -85,7 +85,6 @@
             getCalculatedPuttingData();
         } catch (error) {
             console.error('Error fetching handicap data:', error);
-            alert('Failed to fetch handicap data. Please try again.');
         }
     };
 
@@ -141,7 +140,6 @@
 
     const getAllGIRData = async () => {
         if (!props.userId) {
-            alert('User ID is required to fetch handicap data.');
             return;
         }
 
@@ -163,7 +161,6 @@
             getCalculatedGIRData();
         } catch (error) {
             console.error('Error fetching handicap data:', error);
-            alert('Failed to fetch handicap data. Please try again.');
         }
     };
 
@@ -207,7 +204,6 @@ const getAllFIRData = async () => {
         getCalculatedFIRData();
     } catch (error) {
         console.error('Error fetching handicap data:', error);
-        alert('Failed to fetch handicap data. Please try again.');
     }
 };
  

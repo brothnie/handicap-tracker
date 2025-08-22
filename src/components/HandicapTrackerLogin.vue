@@ -73,6 +73,8 @@
             userName.value = response.data.userName;
             userEmail.value = response.data.userEmail;
             sendAuthenticatedUserData();
+            userEmail.value = '';
+            password.value = '';
 
             // Handle successful authentication (e.g., redirect to main app)
         } catch (error) {

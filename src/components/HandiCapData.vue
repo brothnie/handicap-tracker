@@ -71,7 +71,6 @@ const getAllHandicapData = async () => {
         console.log('All handicap data:', handicapData.value);
     } catch (error) {
         console.error('Error fetching handicap data:', error);
-        alert('Failed to fetch handicap data. Please try again.');
     }
 };
 </script>

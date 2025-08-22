@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { defineProps } from 'vue';
 import { ref } from 'vue';
+import {defineEmits} from 'vue';
 import axios from 'axios';
 
 const props = defineProps({
@@ -8,6 +9,8 @@ const props = defineProps({
     userName: String, 
     userEmail: String
 });
+
+const emit = defineEmits(['userSignedOut']);
 
 const showChangePassword = ref(false);
 
@@ -38,6 +41,10 @@ const updatePassword = () => {
     });
 };
 
+const logOutUser = () => {
+    emit('userSignedOut');
+};
+
 </script>
 
 <template>
@@ -45,12 +52,13 @@ const updatePassword = () => {
         <h1>{{ userName }}</h1>
         <p>{{ userEmail }}</p>
         <button class="primary" @click="showChangePassword = true">Change Password</button>
+        <button class="cancel" v-on:click="logOutUser">Log Out</button>
         <div class="changePassword" v-show="showChangePassword">
             <input type="password" v-model="oldPassword" placeholder="Current Password" />
             <input type="password" v-model="newPassword" placeholder="New Password" />
             <input type="password" v-model="confirmNewPassword" placeholder="Confirm New Password" />
             <button class="primary" v-on:click="updatePassword">Update Password</button>
-            <button class="cancel" @click="showChangePassword = false">Cancel</button>
+             <button class="cancel" @click="showChangePassword = false">Cancel</button>
         </div>
     </div>
 </template>
@@ -80,6 +88,15 @@ const updatePassword = () => {
             border: none;
             cursor: pointer;
         }
+        button.cancel {
+            margin-top: 20px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background-color: grey;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
         div.changePassword {
             border: 1px solid grey;
             border-radius: 10px;
@@ -95,15 +112,6 @@ const updatePassword = () => {
                 width: 80%;
                 border-radius: 5px;
                 border: 1px solid grey;
-            }
-            button.cancel {
-                margin-top: 20px;
-                padding: 10px 20px;
-                border-radius: 5px;
-                background-color: grey;
-                color: white;
-                border: none;
-                cursor: pointer;
             }
         }
     }

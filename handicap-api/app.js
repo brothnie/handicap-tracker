@@ -74,7 +74,10 @@ app.post('/handicapApi/CreateUser', (req, res)=>{
     });
 });
 
-const db = new sqlite3.Database('./test-database.db', (err) => {
+// TestDatabase name: test-database.db
+// Production Database name: handicap-tracker.db
+
+const db = new sqlite3.Database('./handicap-tracker.db', (err) => {
     if (err) {
         console.error(err.message);
     }
@@ -123,7 +126,6 @@ app.post('/handicapApi/getPlayersHandicapIndex', (req, res) => {
     }
     const sql = `SELECT totalScore, courseRating, slopeRating, datePlayed FROM roundData WHERE userId = ?`;
     db.all(sql, [userId], (err, rows) => {
-        console.log('Here are the rows from the database:', rows);  
         if (err) {
             console.error(err.message);
             return res.status(500).send({ error: 'Database error' });
@@ -228,7 +230,8 @@ app.listen(port, () => {
         password TEXT NOT NULL
     )`);
 
-    // db.run(`DROP TABLE IF EXISTS roundData`); // Clear existing data for testing
+    //db.run(`DROP TABLE IF EXISTS roundData`); // Clear existing data for testing
+    //db.run(`DROP TABLE IF EXISTS users`); // Clear existing data for testing
 
     db.run(`CREATE TABLE IF NOT EXISTS roundData (
         id INTEGER PRIMARY KEY AUTOINCREMENT,

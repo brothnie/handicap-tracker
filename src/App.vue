@@ -38,6 +38,21 @@ import FindScoreCard from './components/FindScoreCard.vue';
     }
   }
 
+  const logoutUser = () => {
+    userAuthenticated.value = false;
+    userId.value = '';
+    userName.value = '';
+    userEmail.value = '';
+    showDataDashboard.value = false;
+    showScoreCardFinder.value = false;
+    showEnterRoundData.value = false;
+    showHandicapData.value = false;
+    showFirData.value = false;
+    showGirData.value = false;
+    showPuttingData.value = false;
+    showUserProfile.value = false;
+  };
+
   const handleSectionChange = (data: any) => {
     const section = data.sectionToShow;
     if (section === 'dataDashboard') {
@@ -143,7 +158,7 @@ import FindScoreCard from './components/FindScoreCard.vue';
         <PuttingData v-bind="{userId, userName}"/>
       </div>
       <div v-show="showUserProfile">
-        <UserProfile v-bind="{userId: userId, userName: userName, userEmail: userEmail}" />
+        <UserProfile v-bind="{userId: userId, userName: userName, userEmail: userEmail}" @userSignedOut="logoutUser"/>
       </div>
     </div>
   </main>

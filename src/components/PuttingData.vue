@@ -58,7 +58,6 @@ const getAllPuttingData = async () => {
         getCalculatedPuttingData();
     } catch (error) {
         console.error('Error fetching handicap data:', error);
-        alert('Failed to fetch handicap data. Please try again.');
     }
 };
 </script>
