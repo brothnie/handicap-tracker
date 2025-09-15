@@ -36,7 +36,8 @@
         }
 
         try {
-            const response = await axios.post('http://localhost:3000/handicapApi/CreateUser', {
+            //const response = await axios.post('http://localhost:3000/handicapApi/CreateUser', {
+            const response = await axios.post('https://handicap-tracker-api.vercel.app/handicapApi/CreateUser', {
                 name: usersRegisterName.value,
                 email: usersRegisterEmail.value,
                 password: usersRegisterPassword.value
@@ -63,7 +64,8 @@
         }
 
         try {
-            const response = await axios.post('http://localhost:3000/handicapApi/authenticateUser', {
+            //const response = await axios.post('http://localhost:3000/handicapApi/authenticateUser', {
+            const response = await axios.post('https://handicap-tracker-api.vercel.app/handicapApi/authenticateUser', {
                 email: userEmail.value,
                 password: password.value
             });
