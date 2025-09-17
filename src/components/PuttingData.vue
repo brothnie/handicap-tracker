@@ -41,7 +41,9 @@ const getAllPuttingData = async () => {
     }
 
     try {
-        const response = await fetch('http://localhost:3000/handicapApi/getPuttingData', {
+        //https://handicap-tracker-api.vercel.app
+        //http://localhost:3000/handicapApi
+        const response = await fetch('https://handicap-tracker-api.vercel.app/handicapApi/getPuttingData', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

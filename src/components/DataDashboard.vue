@@ -68,7 +68,9 @@
         }
 
         try {
-            const response = await fetch('http://localhost:3000/handicapApi/getPuttingData', {
+            //https://handicap-tracker-api.vercel.app
+            //http://localhost:3000/handicapApi
+            const response = await fetch('https://handicap-tracker-api.vercel.app/handicapApi/getPuttingData', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -97,7 +99,9 @@
     }
 
     try {
-      const response = await fetch('http://localhost:3000/handicapApi/getPlayersHandicapIndex', {
+        //https://handicap-tracker-api.vercel.app
+        //http://localhost:3000/handicapApi
+      const response = await fetch('https://handicap-tracker-api.vercel.app/handicapApi/getPlayersHandicapIndex', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -144,7 +148,9 @@
         }
 
         try {
-            const response = await fetch('http://localhost:3000/handicapApi/getGirData', {
+            //https://handicap-tracker-api.vercel.app
+            //http://localhost:3000/handicapApi
+            const response = await fetch('https://handicap-tracker-api.vercel.app/handicapApi/getGirData', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -187,7 +193,9 @@ const getAllFIRData = async () => {
     }
 
     try {
-        const response = await fetch('http://localhost:3000/handicapApi/getFirData', {
+        //https://handicap-tracker-api.vercel.app
+        //http://localhost:3000/handicapApi
+        const response = await fetch('https://handicap-tracker-api.vercel.app/handicapApi/getFirData', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

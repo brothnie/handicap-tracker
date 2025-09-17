@@ -24,7 +24,9 @@ const updatePassword = () => {
         return;
     }
     
-    axios.post('http://localhost:3000/handicapApi/changePassword', {
+    //https://handicap-tracker-api.vercel.app
+    //http://localhost:3000/handicapApi
+    axios.post('https://handicap-tracker-api.vercel.app/handicapApi/changePassword', {
         userId: props.userId,
         oldPassword: oldPassword.value,
         newPassword: newPassword.value

@@ -25,7 +25,9 @@ const getCalculatedHandicap = async () => {
   }
 
   try {
-    const response = await fetch('http://localhost:3000/handicapApi/getPlayersHandicapIndex', {
+    //https://handicap-tracker-api.vercel.app
+    //http://localhost:3000/handicapApi
+    const response = await fetch('https://handicap-tracker-api.vercel.app/handicapApi/getPlayersHandicapIndex', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -56,7 +58,9 @@ const getAllHandicapData = async () => {
     }
 
     try {
-        const response = await fetch('http://localhost:3000/handicapApi/getHandicapData', {
+      //https://handicap-tracker-api.vercel.app
+      //http://localhost:3000/handicapApi
+        const response = await fetch('https://handicap-tracker-api.vercel.app/handicapApi/getHandicapData', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
