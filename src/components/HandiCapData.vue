@@ -59,7 +59,7 @@ const getAllHandicapData = async () => {
 
     try {
       //https://handicap-tracker-api.vercel.app
-      //http://localhost:3000/handicapApi
+      //http://localhost:3000
         const response = await fetch('https://handicap-tracker-api.vercel.app/handicapApi/getHandicapData', {
             method: 'POST',
             headers: {
@@ -94,12 +94,10 @@ const getAllHandicapData = async () => {
                     <th>Course Rating</th>
                     <th>Slope Rating</th>
                     <th>Total Yards</th>
-                    <th>Number of Holes Played</th>
+                    <th>Holes Played</th>
                     <th>Tee Played</th>
                     <th>Score</th>
-                    <th>FIR</th>
-                    <th>GIR</th>
-                    <th>Total Putts</th>
+                    <th>Round Handicap</th>
                 </tr>
             </thead>
             <tbody>
@@ -112,9 +110,7 @@ const getAllHandicapData = async () => {
                     <td>{{ round.numberOfHolesPlayed }}</td>
                     <td>{{ round.teePlayed }}</td>
                     <td>{{ round.totalScore }}</td>
-                    <td>{{ round.firNumber }}</td>
-                    <td>{{ round.girNumber }}</td>
-                    <td>{{ round.totalNumberOfPutts }}</td>
+                    <td>{{ round.roundHandicap }}</td>
                 </tr>
             </tbody>        
         </table>

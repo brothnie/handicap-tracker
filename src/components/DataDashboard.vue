@@ -20,7 +20,7 @@
 
     let firProps = ref({
         dataValue: 0, 
-        gaugeTitle: 'FIR Percentage'
+        gaugeTitle: 'Average FIR'
     });
 
     let handicapProps = ref({
@@ -30,12 +30,12 @@
 
     let girProps = ref({
         dataValue: 0, 
-        gaugeTitle: 'GIR Percentage'
+        gaugeTitle: 'Average GIR'
     });
 
     let puttingProps = ref({
         dataValue: 0, 
-        gaugeTitle: 'Average Putts per Round'
+        gaugeTitle: 'Average Putts per Hole'
     });
 
     const puttingData: any = ref([]);
@@ -115,13 +115,6 @@
       const data = await response.json();
       calculatedHandicap.value = data.handicapIndex;
       handicapProps.value.dataValue = calculatedHandicap.value;
-
-    //   if (data.errorCode && data.errorCode === 'notEnoughData') {
-    //       showHandicapLimitedDataError.value = true;
-    //   } else {
-    //       showHandicapLimitedDataError.value = false;
-    //       calculatedHandicap.value = data.handicapIndex;
-    //   }
     } catch (error: any) {
       console.error('Error fetching handicap index:', error);
     }
@@ -134,12 +127,15 @@
             calculatedGIRData.value = 0;
             return;
         }
-        let totalGIR = 0;
+        let totalGIRAvg = 0;
         girData.value.forEach((round: any) => {
-            totalGIR += round.girNumber;
+            const roundGIRAverage = (round.girNumber / round.numberOfHolesPlayed) * 100;
+            totalGIRAvg += roundGIRAverage;
         });
-        calculatedGIRData.value = totalGIR / girData.value.length;
-        girProps.value.dataValue = calculatedGIRData.value;  
+
+        const roundedString = (totalGIRAvg / girData.value.length).toFixed(2);
+        calculatedGIRData.value = parseFloat(roundedString);
+        girProps.value.dataValue = calculatedGIRData.value; 
     }
 
     const getAllGIRData = async () => {
@@ -174,17 +170,29 @@
     const calculatedFIRData = ref(0);
 
     const getCalculatedFIRData = () => {
-    if (firData.value.length === 0) {
-        calculatedFIRData.value = 0;
-        return;
+        if (firData.value.length === 0) {
+            calculatedFIRData.value = 0;
+            return;
+        }
+
+        let totalFIRAvg = 0;
+        firData.value.forEach((round: any) => {
+            let numberOfPar3Holes = 0;
+            if (round.numberOfHolesPlayed === 9) {
+                numberOfPar3Holes = 2;
+            } else if (round.numberOfHolesPlayed === 18) {
+                numberOfPar3Holes = 4;  
+            } else {
+                numberOfPar3Holes = 0; // Default case if neither 9 nor 18 holes
+            }
+            const roundFIRAverage = (round.firNumber / (round.numberOfHolesPlayed - numberOfPar3Holes)) * 100;
+            totalFIRAvg += roundFIRAverage;
+        });
+
+        const roundedString = (totalFIRAvg / firData.value.length).toFixed(2);
+        calculatedFIRData.value = parseFloat(roundedString);
+        firProps.value.dataValue = calculatedFIRData.value;
     }
-    let totalFIR = 0;
-    firData.value.forEach((round: any) => {
-        totalFIR += round.firNumber;
-    });
-    calculatedFIRData.value = totalFIR / firData.value.length;
-    firProps.value.dataValue = calculatedFIRData.value;  
-}
 
 const getAllFIRData = async () => {
     if (!props.userId) {
